@@ -1,5 +1,11 @@
-from .main import GenresDAO
+from .main import GenresDAO, DirectorsDAO, MoviesDAO
+from .user_Dao import UserDAO
 
 __all__ = [
-    'GenresDAO',
+    'DirectorsDAO',
+'MoviesDAO', 'GenresDAO', 'UserDAO',
 ]
+
+from .user_Dao import UserDAO
+
+

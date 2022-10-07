@@ -1,0 +1,5 @@
+PWD_HASH_SALT = b'little_pony'
+PWD_HASH_ITERATIONS = 100_000
+
+JWT_SECRET = 's$c$adv'
+JWT_ALGORITHM = 'HS256'

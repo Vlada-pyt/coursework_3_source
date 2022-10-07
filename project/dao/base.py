@@ -4,6 +4,8 @@ from flask import current_app
 from flask_sqlalchemy import BaseQuery
 from sqlalchemy.orm import scoped_session
 from werkzeug.exceptions import NotFound
+
+from project.models import Movie
 from project.setup.db.models import Base
 
 T = TypeVar('T', bound=Base)
@@ -30,3 +32,4 @@ class BaseDAO(Generic[T]):
             except NotFound:
                 return []
         return stmt.all()
+
