@@ -33,3 +33,5 @@ class BaseDAO(Generic[T]):
                 return []
         return stmt.all()
 
+    def get_all_order_by(self, page: int, filter: Optional[str]):
+        ...
