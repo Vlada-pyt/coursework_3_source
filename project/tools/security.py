@@ -34,18 +34,18 @@ def generate_password_hash(password: str) -> str:
     return base64.b64encode(__generate_password_digest(password)).decode('utf-8')
 
 
-def compose_passwords(password_hash, password):
-    return password_hash == generate_password_hash(password)
+def compose_passwords(password_hash, other_password):
+    return password_hash == generate_password_hash(other_password)
 
 
 def generate_tokens(email, password, password_hash=None, is_refresh=False):
 
     if email is None:
-        raise abort(404)
+        return None
 
     if not is_refresh:
-        if not compare_passwords(other_password=password, password_hash=password_hash):
-            abort(400)
+        if not compose_passwords(other_password=password, password_hash=password_hash):
+            return None
 
     data = {
         "email": email,

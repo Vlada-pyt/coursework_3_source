@@ -20,7 +20,7 @@ class AuthsView(Resource):
 @api.route('/login/')
 class LoginView(Resource):
 
-    @api.marshal_with(user, as_list=True, code=200, description='OK')
+
     @api.response(404, 'Not Found')
     def post(self):
         data = request.json
