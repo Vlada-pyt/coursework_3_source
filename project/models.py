@@ -40,6 +40,6 @@ class User(models.Base):
 
 class UserSchema(Schema):
     id = fields.Int()
-    username = fields.Str()
+    email = fields.Str()
     password = fields.Str()
     role = fields.Str()

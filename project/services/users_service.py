@@ -1,6 +1,6 @@
 from typing import Optional
 
-from project.constaints import PWD_HASH_SALT, PWD_HASH_ITERATIONS
+from project.config import PWD_HASH_SALT, PWD_HASH_ITERATIONS
 import hashlib
 
 from project.exceptions import ItemNotFound

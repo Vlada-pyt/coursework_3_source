@@ -2,6 +2,7 @@ from flask_restx import Resource, Namespace
 from flask import request
 from project.container import user_service
 from project.models import UserSchema
+
 from project.setup.api.models import user
 
 api = Namespace('users')
@@ -14,9 +15,9 @@ class UsersView(Resource):
         header = request.headers.environ.get('HTTP_AUTHORIZATION').replace('Bearer ', '')
         return user_service.update_user(data=data, refresh_token=header)
 
-    @api.marshal_with(user, as_list=True, code=200, description='OK')
-    def get(self):
-        data = request.json
+
+    def get(self, bid):
+
         header = request.headers.environ.get('HTTP_AUTHORIZATION').replace('Bearer ', '')
 
         return user_service.get_user_by_token(refresh_token=header)

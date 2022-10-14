@@ -3,7 +3,7 @@ import jwt
 import calendar
 from flask import abort
 
-from project.constaints import JWT_SECRET, JWT_ALGORITHM
+from project.config import JWT_SECRET, ALGORITHM
 from project.services.users_service import UserService
 
 
@@ -27,17 +27,17 @@ class AuthService:
 
         min30 = datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
         data["exp"] = calendar.timegm(min30.timetuple())
-        access_token = jwt.encode(data, JWT_SECRET, algorithm=JWT_ALGORITHM)
+        access_token = jwt.encode(data, JWT_SECRET, algorithm=ALGORITHM)
 
         days130 = datetime.datetime.utcnow() + datetime.timedelta(days=130)
         data["exp"] = calendar.timegm(days130.timetuple())
-        refresh_token = jwt.encode(data, JWT_SECRET, algorithm=JWT_ALGORITHM)
+        refresh_token = jwt.encode(data, JWT_SECRET, algorithm=ALGORITHM)
 
         return {"access_token": access_token,
                 "refresh_token": refresh_token}
 
 
     def approve_refresh_token(self, refresh_token):
-        data = jwt.decode(jwt=refresh_token, key=JWT_SECRET, algorithms=JWT_ALGORITHM)
+        data = jwt.decode(jwt=refresh_token, key=JWT_SECRET, algorithms=ALGORITHM)
         email = data.get("email")
         return self.generate_tokens(email, None, is_refresh=True)
