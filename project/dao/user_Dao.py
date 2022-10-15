@@ -57,7 +57,7 @@ class UserDAO(BaseDAO[User]):
 
     def update_user(self, login, data):
         try:
-            self._db_session.query(self.__model__.email == login).update(
+            self._db_session.query(self.__model__).update(
                 data)
             self._db_session.commit()
             print("Пользователь обновлен")

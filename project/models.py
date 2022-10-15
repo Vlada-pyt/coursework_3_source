@@ -33,7 +33,7 @@ class Movie(models.Base):
 class User(models.Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
-    email = Column(String)
+    email = Column(String, unique=False, nullable=False)
     password = Column(String)
     role = Column(String)
 

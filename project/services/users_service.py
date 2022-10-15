@@ -54,7 +54,7 @@ class UserService:
         user = self.get_user_by_token(refresh_token)
         if user:
             self.dao.update_user(login=user.email, data={"password":generate_password_hash(data.get("password_2"))})
-            return self.check(login=user.email, password=data.get("passwoed_2"))
+            return self.check(login=user.email, password=data.get("password_2"))
     def get_hash(self, password):
         return hashlib.pbkdf2_hmac(
             'sha256',

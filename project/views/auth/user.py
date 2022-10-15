@@ -16,11 +16,11 @@ class UsersView(Resource):
         return user_service.update_user(data=data, refresh_token=header)
 
 
-    def get(self, bid):
+    def get(self):
 
         header = request.headers.environ.get('HTTP_AUTHORIZATION').replace('Bearer ', '')
 
-        return user_service.get_user_by_token(refresh_token=header)
+        return UserSchema().dump(user_service.get_user_by_token(refresh_token=header))
 
     def post(self):
         req_json = request.json

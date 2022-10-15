@@ -15,8 +15,8 @@ def __generate_password_digest(password: str) -> bytes:
     return hashlib.pbkdf2_hmac(
         hash_name="sha256",
         password=password.encode("utf-8"),
-        salt=current_app.config["PWD_HASH_SALT"],
-        iterations=current_app.config["PWD_HASH_ITERATIONS"],
+        salt=PWD_HASH_SALT,
+        iterations=PWD_HASH_ITERATIONS,
     )
 
 def compare_passwords(password_hash, other_password) -> bool:
@@ -63,8 +63,8 @@ def approve_refresh_token(refresh_token):
 
 def get_data_from_token(refresh_token):
     try:
-        data = jwt.decode(jwt=refresh_token, key=current_app.config['JWT_SECRET'],
-                          algorithms=[current_app.config['ALGORITHM']])
+        data = jwt.decode(jwt=refresh_token, key=JWT_SECRET,
+                          algorithms=ALGORITHM)
         return data
     except Exception:
         return None
