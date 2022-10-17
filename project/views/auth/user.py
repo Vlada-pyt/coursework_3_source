@@ -1,6 +1,7 @@
 from flask_restx import Resource, Namespace
 from flask import request
 from project.container import user_service
+from project.decorators import auth_required
 from project.models import UserSchema
 
 from project.setup.api.models import user
@@ -29,6 +30,7 @@ class UsersView(Resource):
 
 @api.route('/password/')
 class LoginView(Resource):
+    @auth_required
     def put(self):
         data = request.json
         header = request.headers.environ.get('HTTP_AUTHORIZATION').replace('Bearer ', '')

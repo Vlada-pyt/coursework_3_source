@@ -21,7 +21,7 @@ class UserService:
     def get_item(self, pk: int) -> User:
         if user := self.dao.get_by_id(pk):
             return user
-        raise ItemNotFound(f"User {pk}")
+        raise ItemNotFound(f'User {pk}')
 
     def get_all(self, page: Optional[int] = None) -> list[User]:
         return self.dao.get_all(page=page)
@@ -54,9 +54,9 @@ class UserService:
     def update_password(self, data, refresh_token):
         user = self.get_user_by_token(refresh_token)
         password_hash = self.get_hash(user.password)
-        if user and compare_passwords(password_hash, data.get("password")):
-            self.dao.update_user(login=user.email, data={"password": generate_password_hash(data.get("password_2"))})
-            return self.check(login=user.email, password=data.get("password_2"))
+        if user and compare_passwords(password_hash, data.get('password')):
+            self.dao.update_user(login=user.email, data={'password': generate_password_hash(data.get('password_2'))})
+            return self.check(login=user.email, password=data.get('password_2'))
     def get_hash(self, password):
         return hashlib.pbkdf2_hmac(
             'sha256',
